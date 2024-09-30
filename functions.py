@@ -6,10 +6,13 @@ from typing import Any, List
 
 import streamlit as st
 from langchain.callbacks import StreamlitCallbackHandler
+# from langchain_community.callbacks.streamlit import StreamlitCallbackHandler # Agregado
 from langchain.chains import ConversationalRetrievalChain
 from langchain.document_loaders import (PyPDFLoader, TextLoader,
                                         UnstructuredEPubLoader,
                                         UnstructuredWordDocumentLoader)
+# from langchain_community.document_loaders import PyPDFLoader  # Agregado
+
 from langchain.embeddings import HuggingFaceEmbeddings
 from langchain.memory import ConversationBufferMemory
 from langchain.retrievers import ContextualCompressionRetriever
@@ -155,3 +158,7 @@ def process_user_query(qa_chain, user_query):
     stream_handler = StreamlitCallbackHandler(assistant)
     response = qa_chain.run(prompt, callbacks=[stream_handler])
     return response
+
+
+# loader = PyPDFLoader("example_path/layout-parser-paper.pdf")  # Don't forget the double-quote
+# pages = loader.load_and_split()
